@@ -70,10 +70,8 @@ namespace ModTemplate
             
             if (eventArgs.KeyCode == Keys.H)// spawnPedKey) // (eventArgs.KeyCode == Keys.H)
             {
-                // Game.Player.Character.Position = new Vector3(0.5f, 0.5f, 0.5f);
+                // Game.Player.Character.Position = new Vector3(0.5f, 0.5f, 0.5f); // teleport player
 
-                // var npc = World.CreatePed(PedHash.Bevhills01AFM, Game.Player.Character.GetOffsetInWorldCoords(new Vector3(0, 5, 0)));
-                //Notification.Show("hello");
                 UI.Notify("hello");
 
                 var npc = World.CreatePed(PedHash.JewelSec01, Game.Player.Character.GetOffsetInWorldCoords(new Vector3(0, 5, 0)));
