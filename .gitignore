@@ -10,11 +10,7 @@
 *.userosscache
 *.sln.docstates
 
-# User-specific files (MonoDevelop/Xamarin Studio)
-*.userprefs
-
-# Mono auto generated files
-mono_crash.*
+*obj/*
 
 # Build results
 [Dd]ebug/
@@ -69,6 +65,7 @@ ScaffoldingReadMe.txt
 StyleCopReport.xml
 
 # Files built by Visual Studio
+*.cache
 *_i.c
 *_p.c
 *_h.h
