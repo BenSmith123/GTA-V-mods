@@ -37,10 +37,11 @@
   <ItemGroup>
     <Reference Include="NativeUI, Version=1.9.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files\Grand Theft Auto V (1.41)\scripts\NativeUI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Games\Grand Theft Auto V\NativeUI.dll</HintPath>
     </Reference>
-    <Reference Include="ScriptHookVDotNet">
-      <HintPath>..\..\..\..\..\..\Program Files\Grand Theft Auto V (1.41)\ScriptHookVDotNet.dll</HintPath>
+    <Reference Include="ScriptHookVDotNet, Version=0.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Games\Grand Theft Auto V\ScriptHookVDotNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -54,11 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration.cs" />
     <Compile Include="ModTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>COPY "$(TargetPath)" "D:\Program Files\Grand Theft Auto V (1.41)\scripts"</PostBuildEvent>
+    <PostBuildEvent>COPY "$(TargetPath)" "D:\Games\Grand Theft Auto V\scripts"</PostBuildEvent>
   </PropertyGroup>
 </Project>

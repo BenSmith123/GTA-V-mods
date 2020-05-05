@@ -5,14 +5,15 @@ using GTA.Native;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
-
 using NativeUI;
-
+using System.IO;
 
 /**
  * GUIDES
  * 
  * How to's: https://github.com/crosire/scripthookvdotnet/wiki/How-Tos
+ * 
+ * NativeUI: https://github.com/Guad/NativeUI/wiki/Getting-Started
  * 
  * List of native GTA hash functions: http://www.dev-c.com/nativedb/
  */
@@ -22,9 +23,6 @@ namespace ModTemplate
 {
     public class ModTemplate : Script
     {
-        ScriptSettings config;
-        Keys spawnPedKey;
-
         Ped Player;
         float Radius = 2000; // TODO - is this needed
 
@@ -32,6 +30,9 @@ namespace ModTemplate
         private List<int> PedList = new List<int>();
         private int PedTally = 0;
 
+        UIText speedText = new UIText("Speed: ", new Point(1130, 20), 0.5f);
+
+        Configuration config;
 
         public ModTemplate()
         {
@@ -44,12 +45,11 @@ namespace ModTemplate
 
         private void onStart()
         {
-            // var myMenu = new UIMenu("Banner Title", "~b~SUBTITLE");
-            
-            //Notification.Show("hello"); // Despite all the tutorials using UI.notify() - this works
+            //Notification.Show("hello"); // alternative used in ScriptHookVDotNet3
             UI.Notify("hello");
             UI.ShowSubtitle("yo");
-            readConfigurationFile();
+
+            config = new Configuration(); // load from config and set keys
         }
 
         private void onTick(object sender, EventArgs eventArgs)
@@ -61,6 +61,10 @@ namespace ModTemplate
 
             Player = Game.Player.Character;
 
+            speedText.Caption = "hello!!!";
+            speedText.Enabled = true;
+            speedText.Draw();
+
             UpdateDeadPeds();
         }
 
@@ -68,17 +72,18 @@ namespace ModTemplate
         {
             // executed when a key is pressed in game
             
-            if (eventArgs.KeyCode == Keys.H)// spawnPedKey) // (eventArgs.KeyCode == Keys.H)
+            if (eventArgs.KeyCode == config.spawnPedKey) // (eventArgs.KeyCode == Keys.H)
             {
                 // Game.Player.Character.Position = new Vector3(0.5f, 0.5f, 0.5f); // teleport player
 
-                UI.Notify("hello");
+                UI.Notify("Spawning body guard");
+                // config.Number = 90;
+                // UI.Notify(config.Number.ToString());
 
                 var npc = World.CreatePed(PedHash.JewelSec01, Game.Player.Character.GetOffsetInWorldCoords(new Vector3(0, 5, 0)));
 
                 //npc.Weapons.Give(WeaponHash.Knife, 1, true, true);
                 //npc.Task.FightAgainst(Game.Player.Character);
-
 
                 PedGroup playerGroup = Game.Player.Character.CurrentPedGroup;
                 Function.Call(Hash.SET_PED_AS_GROUP_MEMBER, npc, playerGroup); // puts the bodyguard into the players group
@@ -95,35 +100,28 @@ namespace ModTemplate
 
         private void spawnVehicle()
         {
-            Vehicle vehicle = World.CreateVehicle(VehicleHash.Zentorno, Game.Player.Character.Position + Game.Player.Character.ForwardVector * 3.0f, Game.Player.Character.Heading + 90);
+            Vehicle vehicle = World.CreateVehicle(VehicleHash.Comet2, Game.Player.Character.Position + Game.Player.Character.ForwardVector * 3.0f, Game.Player.Character.Heading + 90);
             vehicle.CanTiresBurst = false;
             vehicle.PlaceOnGround();
-        }
-
-
-        private void readConfigurationFile()
-        {
-            config = ScriptSettings.Load("scripts\\ModSettings.ini");
-            spawnPedKey = config.GetValue<Keys>("KeyBindings", "spawnPed", Keys.H);
         }
 
 
         private void UpdateDeadPeds()
         {
             Ped[] peds = World.GetNearbyPeds(Player, Radius);
-            //for each entity in radius
+
+            // for each entity in radius
             for (int i = 0; i < peds.Length; i++)
             {
-                //check if its dead and damaged by us but not added previously
+                // check if its dead and damaged by us but not added previously
                 if (peds[i].Exists() && peds[i].HasBeenDamagedBy(Player) && peds[i].IsDead)
                 {
-                    //check if we have added this dead ped yet
+                    // check if we have added this dead ped yet
                     if (!PedList.Contains(peds[i].GetHashCode()))
                     {
                         PedTally = PedTally + 1;
                         PedList.Add(peds[i].GetHashCode());
 
-                        // Notification.Show("Kills: " + PedTally.ToString());
                         UI.ShowSubtitle("Kills: " + PedTally.ToString());
                     }
                 }
