@@ -16,6 +16,10 @@ using System.IO;
  * NativeUI: https://github.com/Guad/NativeUI/wiki/Getting-Started
  * 
  * List of native GTA hash functions: http://www.dev-c.com/nativedb/
+ * 
+ * Open source GTA V mods:
+ * https://github.com/logicspawn/GTARPG - RPG mod: Massive project, good reference
+ * https://github.com/hesa656/TurnScript - Full vehicle control / HUD etc.
  */
 
 
@@ -30,9 +34,13 @@ namespace ModTemplate
         private List<int> PedList = new List<int>();
         private int PedTally = 0;
 
-        UIText speedText = new UIText("Speed: ", new Point(1130, 20), 0.5f);
+        UIText textSpeedCurr = new UIText("", new Point(1100, 20), 0.5f);
+        UIText textSpeedMax = new UIText("", new Point(1100, 40), 0.5f);
 
         Configuration config;
+
+        float speedKph = 0;
+        float highestSpeedKph = 0;
 
         public ModTemplate()
         {
@@ -61,9 +69,25 @@ namespace ModTemplate
 
             Player = Game.Player.Character;
 
-            speedText.Caption = "hello!!!";
-            speedText.Enabled = true;
-            speedText.Draw();
+            if (Player.IsInVehicle()) 
+            { 
+                speedKph = Player.CurrentVehicle.Speed * 3600 / 1000;
+
+                if (speedKph > highestSpeedKph) highestSpeedKph = speedKph;
+            }
+            else 
+            { 
+                speedKph = 0; // reset speed when not in vehicle
+            }
+
+            textSpeedCurr.Caption = "Speed: " + Math.Round(speedKph).ToString() + "km";
+            textSpeedMax.Caption = "Max: " + Math.Round(highestSpeedKph).ToString() + "km";
+
+            textSpeedCurr.Enabled = true;
+            textSpeedMax.Enabled = true;
+
+            textSpeedCurr.Draw();
+            textSpeedMax.Draw();
 
             UpdateDeadPeds();
         }
@@ -72,7 +96,7 @@ namespace ModTemplate
         {
             // executed when a key is pressed in game
             
-            if (eventArgs.KeyCode == config.spawnPedKey) // (eventArgs.KeyCode == Keys.H)
+            if (eventArgs.KeyCode == config.spawnPedKey)
             {
                 // Game.Player.Character.Position = new Vector3(0.5f, 0.5f, 0.5f); // teleport player
 
