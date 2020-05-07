@@ -15,6 +15,7 @@ namespace ModTemplate
 
         // initialise all keys - only this class can modify their values
         public Keys spawnPedKey { get; private set; }
+        public Keys fixVehicleKey { get; private set; }
 
         public Configuration()
         {
@@ -28,6 +29,7 @@ namespace ModTemplate
             {
                 config = ScriptSettings.Load(configFile);
                 spawnPedKey = config.GetValue<Keys>("KeyBindings", "spawnPed", Keys.H);
+                fixVehicleKey = config.GetValue<Keys>("KeyBindings", "fixVehicle", Keys.X);
             }
             else
             {
@@ -43,7 +45,7 @@ namespace ModTemplate
             {
                 sw.WriteLine("[KeyBindings]");
                 sw.WriteLine("spawnPed = J");
-                sw.WriteLine("MOREOPTIONS = K; here is a comment"); // TODO
+                sw.WriteLine("fixVehicle = X; here is a comment"); // TODO
             }
         }
 
