@@ -7,8 +7,8 @@
     <ProjectGuid>{C52562ED-CAE2-475B-88E1-23E7084EBA5A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ModTemplate</RootNamespace>
-    <AssemblyName>ModTemplate</AssemblyName>
+    <RootNamespace>InstantRepair</RootNamespace>
+    <AssemblyName>InstantRepair</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
-    <Compile Include="ModTemplate.cs" />
+    <Compile Include="VehicleInstantRepair.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
