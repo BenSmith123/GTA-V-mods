@@ -1,11 +1,13 @@
-﻿using System;
-using GTA;
-using GTA.Math;
+﻿using GTA;
 using GTA.Native;
 using System.Windows.Forms;
-using System.Drawing;
-using NativeUI;
-using System.IO;
+
+
+// TODO - potential options:
+// instant fix tyres or windows only - or option?
+// show vehicle name?
+// clean player option?
+// instant get into any vehicle thats close with engine start
 
 
 namespace VehicleInstantRepair
@@ -19,8 +21,6 @@ namespace VehicleInstantRepair
         {
             Config = new Configuration(); // load from config and set keys
             KeyDown += onKeyDown;
-
-            UI.Notify("script loaded");
         }
 
         // executed when a key is pressed in game
@@ -28,55 +28,31 @@ namespace VehicleInstantRepair
         {
             // if (eventArgs.KeyCode == Config.RepairKey) { RepairVehicle(); }
             if (eventArgs.KeyCode == Config.RepairKey) { RepairVehicle(); }
-            if (eventArgs.KeyCode == Config.CleanKey) { damageVehicle(); }
-            if (eventArgs.KeyCode == Keys.Z) { spawnVehicle(); }
+            if (eventArgs.KeyCode == Config.CleanKey) { CleanVehicle(); }
         }
 
 
-
-
-        private void spawnVehicle()
+        private void CleanVehicle()
         {
-            Ped player = Game.Player.Character;
-
-            Vehicle vehicle = World.CreateVehicle(VehicleHash.Futo, player.Position + player.ForwardVector * 3.0f, player.Heading + 90);
-            
-            vehicle.SetMod(VehicleMod.Horns, 1000, false);
-            vehicle.CanTiresBurst = false;
-            vehicle.RollDownWindows();
-            vehicle.NumberPlate = "hello";
-            // vehicle.IsInvincible = true;
-            vehicle.PlaceOnGround();
-
-            UI.Notify(vehicle.GetHashCode().ToString());
-            //vehicle.IsInvincible
-
-            Game.Player.Character.SetIntoVehicle(vehicle, VehicleSeat.Driver);
+            if (Game.Player.Character.IsInVehicle()) { Game.Player.Character.CurrentVehicle.DirtLevel = 0; }
         }
 
 
         private void RepairVehicle()
         {
-
             Ped player = Game.Player.Character;
 
             if (player.IsInVehicle())
             {
                 Vehicle vehicle = player.CurrentVehicle;
-
                 float engineHealth = vehicle.EngineHealth;
-
-                // Player.CurrentVehicle.EngineHealth = 100; // 1000 = 100%
-                // player.CurrentVehicle.IsDriveable = true;
-                // player.CurrentVehicle.Health = 1000;
-                // player.CurrentVehicle.IsDriveable = true;
-                // player.CurrentVehicle.EngineHealth = 10;
 
                 if (Config.CleanOnRepair) { vehicle.DirtLevel = 0; }
 
                 if (!Config.PartialCosmeticRepair)
                 {
-                    player.CurrentVehicle.Repair(); // full repair - engine health & cosmetics
+                    // full repair - engine health & cosmetics
+                    player.CurrentVehicle.Repair();
                 } 
                 else
                 {
@@ -96,22 +72,6 @@ namespace VehicleInstantRepair
                 // if water damaged, bring back to life!
                 if (vehicle.IsDead) { player.CurrentVehicle.EngineRunning = true; }
 
-
-                /*
-                player.CurrentVehicle.FixWindow(VehicleWindow.BackLeftWindow);
-                player.CurrentVehicle.FixWindow(VehicleWindow.BackRightWindow);
-                player.CurrentVehicle.FixWindow(VehicleWindow.FrontLeftWindow);
-                player.CurrentVehicle.FixWindow(VehicleWindow.BackRightWindow);
-                */
-
-                // Function.Call(Hash.SET_VEHICLE_FIXED)
-                // Function.Call(Hash.SET_VEHICLE_DAMAGE, player.CurrentVehicle, 0);
-                // player.CurrentVehicle.LeftIndicatorLightOn
-                
-
-                UI.Notify(vehicle.FriendlyName + "dirt level: " + vehicle.DirtLevel.ToString());
-                // UI.Notify(Player.CurrentVehicle.Acceleration.ToString());
-                // UI.Notify(player.CurrentVehicle.DisplayName); // mod spawn name or default name
             }
         }
 

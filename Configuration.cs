@@ -3,12 +3,6 @@ using System.IO;
 using System.Windows.Forms;
 
 
-// TODO - potential options:
-// show vehicle name?
-// need to clean dirt/snow? - option to leave dirt after repair?
-// clean player option?
-// instant get into any vehicle thats close with engine start
-
 namespace VehicleInstantRepair
 {
     class Configuration
