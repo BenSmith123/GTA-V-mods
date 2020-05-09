@@ -2,6 +2,12 @@
 
 .NET / C# scripts for modding Grand Theft Auto V on PC
 
+## Published mods
+- Instant vehicle repair: https://www.gta5-mods.com/scripts/instant-vehicle-repair (branch: https://github.com/BenSmith123/GTA-V-mods/tree/vehicle-instant-repair)
+![Instant vehicle repair](references/published-instant-vehicle-repair.png)
+
+## Set up
+
 ### IDE
 - Visual Studio 2019 (Community edition)
 
@@ -13,5 +19,3 @@
 
 ### Build/Deploy
 - CTRL + SHIFT + B to build .cs file into .dll, this will also automatically deploy to my 'GTAV folder/scripts'
-
-### Description: 
