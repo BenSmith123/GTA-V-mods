@@ -4,7 +4,7 @@
 
 ## Published mods
 - Instant vehicle repair: https://www.gta5-mods.com/scripts/instant-vehicle-repair (branch: https://github.com/BenSmith123/GTA-V-mods/tree/vehicle-instant-repair)
-![Instant vehicle repair](references/published-instant-vehicle-repair.png)
+- ![Instant vehicle repair](references/published-instant-vehicle-repair.png)
 
 ## Set up
 
