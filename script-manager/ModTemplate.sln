@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptManager", "ScriptManager.csproj", "{C52562ED-CAE2-475B-88E1-23E7084EBA5A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C52562ED-CAE2-475B-88E1-23E7084EBA5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C52562ED-CAE2-475B-88E1-23E7084EBA5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C52562ED-CAE2-475B-88E1-23E7084EBA5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C52562ED-CAE2-475B-88E1-23E7084EBA5A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {825A2D52-08DC-47F9-9CB8-DE8B72F03CC7}
+	EndGlobalSection
+EndGlobal
