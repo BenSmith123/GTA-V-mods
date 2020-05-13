@@ -112,7 +112,7 @@ namespace ModTemplate
 
         private void spawnVehicle()
         {
-            Vehicle vehicle = World.CreateVehicle(VehicleHash.Comet2, Game.Player.Character.Position + Game.Player.Character.ForwardVector * 3.0f, Game.Player.Character.Heading + 90);
+            Vehicle vehicle = World.CreateVehicle(VehicleHash.Comet2, Game.Player.Character.s.Position + Game.Player.Character.ForwardVector * 3.0f, Game.Player.Character.Heading + 90);
             
             vehicle.SetMod(VehicleMod.Horns, 1000, false);
             vehicle.CanTiresBurst = false;
@@ -121,6 +121,9 @@ namespace ModTemplate
             vehicle.IsInvincible = true;
             vehicle.PlaceOnGround();
             UI.Notify(vehicle.GetHashCode().ToString());
+
+
+            
             //vehicle.IsInvincible
         }
 
