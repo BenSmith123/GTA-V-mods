@@ -7,7 +7,6 @@ using System.Linq;
 using NativeUI;
 using System.Drawing;
 using GTA.Native;
-using System.Drawing.Printing;
 
 /**
  * In-game menu UI to to enable/disable mods
@@ -40,13 +39,7 @@ namespace ScriptManager
             KeyDown += onKeyDown;
             Tick += onTick;
 
-            UI.Notify("Script loaded");
-
-
-            
-            
-
-
+            UI.Notify("Script manager loaded");
 
             _menuPool = new MenuPool();
             // var mainMenu = new UIMenu("Native UI", "~b~NATIVEUI SHOWCASE");
@@ -57,9 +50,6 @@ namespace ScriptManager
 
             myMenu.AddItem(myItem);
             
-            
-
-
             myMenu.AddItem(new UIMenuCheckboxItem("Simple Checkbox", false));
             myMenu.AddItem(new UIMenuListItem("Simple List", new List<dynamic> { "Item 1", "Item 2", "Item 3" }, 0));
             myMenu.AddItem(new UIMenuItem("Another Button", "Items can have descriptions too!"));
@@ -115,25 +105,7 @@ namespace ScriptManager
         {
             if (eventArgs.KeyCode == Keys.E) { UpdateModFiles(); }
             if (eventArgs.KeyCode == Keys.H) { UI.Notify("hello"); myMenu.GoDown(); } //  myMenu.Visible = !myMenu.Visible;
-            if (eventArgs.KeyCode == Keys.Y) { doshit(); } //  myMenu.Visible = !myMenu.Visible;
-
-
-
-            // if (eventArgs.KeyCode == Keys.H) { Alert(); }
-        }
-
-
-        private void doshit()
-        {
-
-            UI.Notify("XXX!");
-
-            //int ptlhash = Function.Call<int>(Hash.GET_HASH_KEY, "WEAPON_PISTOL"); 
-            //Function.Call(Hash.SET_CURRENT_PED_VEHICLE_WEAPON, Game.Player.Character.Handle, ptlhash);
-
-            //Function.Call<int>(Hash.SET_CURRENT_PED_VEHICLE_WEAPON, Game.Player.Character, (uint)WeaponHash.Unarmed);
-            Game.Player.Character.Weapons.Select(Game.Player.Character.Weapons[WeaponHash.Unarmed]);
-            UI.Notify("set default weapon!");
+            if (eventArgs.KeyCode == Keys.Y) { myMenu.Visible = !myMenu.Visible; }
         }
 
 

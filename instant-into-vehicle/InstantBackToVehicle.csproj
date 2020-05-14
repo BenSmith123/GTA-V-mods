@@ -7,8 +7,8 @@
     <ProjectGuid>{C52562ED-CAE2-475B-88E1-23E7084EBA5A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ScriptManager</RootNamespace>
-    <AssemblyName>ScriptManager</AssemblyName>
+    <RootNamespace>InstantBackToVehicle</RootNamespace>
+    <AssemblyName>InstantBackToVehicle</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -37,7 +37,7 @@
   <ItemGroup>
     <Reference Include="NativeUI, Version=1.9.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Games\Grand Theft Auto V\scripts\NativeUI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Games\Grand Theft Auto V\NativeUI.dll</HintPath>
     </Reference>
     <Reference Include="ScriptHookVDotNet, Version=0.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
@@ -55,7 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ScriptManager.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="InstantBackToVehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
